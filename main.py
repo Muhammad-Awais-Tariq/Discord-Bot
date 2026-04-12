@@ -13,6 +13,7 @@ intents.message_content = True
 intents.members = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
+original_role = "test role"
 
 @bot.event
 async def on_ready():
@@ -36,5 +37,14 @@ async def on_message(message): # it will trigger for any message
 @bot.command() # used to create the custom commands now whenever we will do !hello it will send hello name
 async def hello(ctx):
     await ctx.send(f"Hello {ctx.author.mention} !")
+
+@bot.command()
+async def assign(ctx):
+    role = discord.utils.get(ctx.guild.roles, name = original_role)
+    if role:
+        await ctx.author.add_roles(role)
+        await ctx.send(f"{ctx.author.mention} has this {original_role}")
+    else:
+        await ctx.send("role does not exit")
 
 bot.run(token,log_handler=handler,log_level=logging.DEBUG)
