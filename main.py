@@ -47,4 +47,12 @@ async def assign(ctx):
     else:
         await ctx.send("role does not exit")
 
+@bot.command()
+async def remove(ctx):
+    role = discord.utils.get(ctx.guild.roles, name = original_role)
+    if role:
+        await ctx.author.remove_roles(role)
+        await ctx.send(f"{ctx.author.mention} has lost this {original_role} role")
+    else:
+        await ctx.send("role does not exit")    
 bot.run(token,log_handler=handler,log_level=logging.DEBUG)
