@@ -54,5 +54,15 @@ async def remove(ctx):
         await ctx.author.remove_roles(role)
         await ctx.send(f"{ctx.author.mention} has lost this {original_role} role")
     else:
-        await ctx.send("role does not exit")    
+        await ctx.send("role does not exit")
+
+@bot.command()
+@commands.has_role(original_role)
+async def special(ctx):
+    await ctx.send("You have special role")
+
+@special.error
+async def special_error(ctx,error):
+    if isinstance(error,commands.MissingRole):
+        await ctx.send("You do not have special role")
 bot.run(token,log_handler=handler,log_level=logging.DEBUG)
