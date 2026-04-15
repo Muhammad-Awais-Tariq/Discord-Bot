@@ -57,6 +57,10 @@ async def remove(ctx):
         await ctx.send("role does not exit")
 
 @bot.command()
+async def dm(ctx, * , message):         #IF SOMEONE USED COMMAND LIKE !DM HELLO THIS HELLO WILL BE SOTORED IN THE MESSAGE
+    await ctx.author.send(f"you said{message}")
+    
+@bot.command()
 @commands.has_role(original_role)
 async def special(ctx):
     await ctx.send("You have special role")
@@ -66,3 +70,6 @@ async def special_error(ctx,error):
     if isinstance(error,commands.MissingRole):
         await ctx.send("You do not have special role")
 bot.run(token,log_handler=handler,log_level=logging.DEBUG)
+
+
+
