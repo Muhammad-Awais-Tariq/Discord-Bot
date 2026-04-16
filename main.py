@@ -59,7 +59,11 @@ async def remove(ctx):
 @bot.command()
 async def dm(ctx, * , message):         #IF SOMEONE USED COMMAND LIKE !DM HELLO THIS HELLO WILL BE SOTORED IN THE MESSAGE
     await ctx.author.send(f"you said{message}")
-    
+
+@bot.command()
+async def reply(ctx):         
+    await ctx.reply("This is a reply")
+
 @bot.command()
 @commands.has_role(original_role)
 async def special(ctx):
