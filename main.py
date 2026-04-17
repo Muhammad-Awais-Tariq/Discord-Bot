@@ -61,6 +61,13 @@ async def dm(ctx, * , message):         #IF SOMEONE USED COMMAND LIKE !DM HELLO 
     await ctx.author.send(f"you said{message}")
 
 @bot.command()
+async def poll(ctx , * , question):
+    embed1 = discord.Embed(title="Poll",description=question)
+    poll_msg = await ctx.send(embed = embed1)
+    await poll_msg.add_reaction("👌")
+    await poll_msg.add_reaction("😂")
+
+@bot.command()
 async def reply(ctx):         
     await ctx.reply("This is a reply")
 
